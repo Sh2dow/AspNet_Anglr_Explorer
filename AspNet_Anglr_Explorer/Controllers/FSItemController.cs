@@ -6,28 +6,32 @@ using System.Net.Http;
 using System.Web.Http;
 using FSExplorer.BL;
 using FSExplorer.Models;
+using FSExplorer.BL.Logic;
+using System.Threading.Tasks;
+using System.Web;
 
 namespace AspNet_Anglr_Explorer.Controllers
 {
+    [RoutePrefix("api/fsitem")]
     public class FSItemController : ApiController
     {
-        private IFS photoManager;
+        private IFSItemManager fsManager;
 
-        public PhotoController()
-            : this(new LocalPhotoManager(HttpRuntime.AppDomainAppPath + @"\Album"))
+        public FSItemController()
+            : this(new LocalFSItemManager(HttpRuntime.AppDomainAppPath))
         {
         }
 
-        public PhotoController(IPhotoManager photoManager)
+        public FSItemController(IFSItemManager fsManager)
         {
-            this.photoManager = photoManager;
+            this.fsManager = fsManager;
         }
 
-        // GET: api/Photo
+        // GET: api/fsitem
         public async Task<IHttpActionResult> Get()
         {
-            var results = await photoManager.Get();
-            return Ok(new { photos = results });
+            var results = await fsManager.Get();
+            return Ok(new { fsitems = results });
         }
     }
 }

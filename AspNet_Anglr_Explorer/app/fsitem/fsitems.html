@@ -1,0 +1,34 @@
+﻿<div ng-cloak>
+    <div class="row">
+        <div class="col-md-12">
+            <h3>{{vm.title}}</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-9">
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-info active">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-11 col-xs-10">name</div>
+                        <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">size (kb)</div>
+                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2"></div>
+                    </div>
+                </li>
+                <li class="list-group-item" ng-show="vm.photos.length === 0">no photos</li>
+                <li ng-repeat="fsitem in vm.fsitems" class="list-group-item">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-11 col-xs-10 wraptext">{{fsitem.name}}</div>
+                        <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">{{fsitem.size}}</div>
+                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-9">
+            <eg-app-status></eg-app-status>
+        </div>
+    </div>
+</div>
