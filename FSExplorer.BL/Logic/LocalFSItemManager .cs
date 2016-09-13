@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using FSExplorer.Models;
 using System.IO;
-using System.Net.Http;
 
 namespace FSExplorer.BL.Logic
 {
@@ -66,8 +64,15 @@ namespace FSExplorer.BL.Logic
                                             })
                                             .ToList();
 
+                var parentFolder = new FSItem
+                {
+                    Location = new DirectoryInfo(this.workingFolder).Parent.Name,
+                    Name = ".."
+                };
+                fsitems.Add(parentFolder);
                 fsitems.AddRange(files);
                 fsitems.AddRange(folders);
+                //fsitems.Add(new DirectoryInfo(this.workingFolder));
             });
 
             return fsitems;

@@ -32,7 +32,6 @@ d:\Documents\Visual Studio 2015\Projects\aspnet_anglr_explorer\AspNet_Anglr_Expl
 d:\Documents\Visual Studio 2015\Projects\aspnet_anglr_explorer\AspNet_Anglr_Explorer\bin\WebGrease.dll
 d:\Documents\Visual Studio 2015\Projects\aspnet_anglr_explorer\AspNet_Anglr_Explorer\bin\FSExplorer.BL.pdb
 d:\Documents\Visual Studio 2015\Projects\aspnet_anglr_explorer\AspNet_Anglr_Explorer\bin\FSExplorer.Models.pdb
-d:\Documents\Visual Studio 2015\Projects\aspnet_anglr_explorer\AspNet_Anglr_Explorer\bin\Antlr3.Runtime.pdb
 d:\Documents\Visual Studio 2015\Projects\aspnet_anglr_explorer\AspNet_Anglr_Explorer\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 d:\Documents\Visual Studio 2015\Projects\aspnet_anglr_explorer\AspNet_Anglr_Explorer\bin\Newtonsoft.Json.xml
 d:\Documents\Visual Studio 2015\Projects\aspnet_anglr_explorer\AspNet_Anglr_Explorer\bin\System.Net.Http.Formatting.xml

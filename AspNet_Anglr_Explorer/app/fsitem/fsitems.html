@@ -1,16 +1,13 @@
 ﻿<div class="row">
-    <div class="col-md-12">
+    <div>
         <h3>Current path:  {{fsitems[1].name}}</h3>
     </div>
-</div>
-<div class="row">
-    <div class="col-md-8">
+    <div>
         Table
     </div>
-</div>
-<div class="row">
-    <div class="col-md-4">
-        <ul>
+    <br />
+    <div>
+        <ul style="list-style: none; margin: -2px; padding: 2px">
             <li ng-show="vm.fsitems.length === 0">no files</li>
             <li ng-repeat="fsitem in vm.fsitems">
                 <a href="{{fsitem.name}}">{{fsitem.name}}</a>

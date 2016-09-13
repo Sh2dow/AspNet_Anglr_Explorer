@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using FSExplorer.BL;
-using FSExplorer.Models;
+﻿using System.Web.Http;
 using FSExplorer.BL.Logic;
 using System.Threading.Tasks;
 using System.Web;
@@ -31,6 +24,7 @@ namespace AspNet_Anglr_Explorer.Controllers
         public async Task<IHttpActionResult> Get()
         {
             var results = await fsManager.Get();
+            
             return Ok(new { fsitems = results });
         }
     }
