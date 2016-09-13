@@ -11,8 +11,7 @@
         return $resource("api/fsitem/:fileName",
                 { id: "@fileName" },
                 {
-                    'query': { method: 'GET' },
-                    'save': { method: 'POST', transformRequest: angular.identity, headers: { 'Content-Type': undefined } }
+                    'query': { method: 'GET' }
                 });
     }
 })();

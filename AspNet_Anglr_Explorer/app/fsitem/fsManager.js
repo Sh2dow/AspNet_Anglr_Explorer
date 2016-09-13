@@ -11,10 +11,7 @@
         var service = {
             fsitems: [],
             load: load,
-            fsitemExists: fsitemExists,
-            status: {
-                uploading: false
-            }
+            fsitemExists: fsitemExists
         };
 
         return service;

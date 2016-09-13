@@ -48,38 +48,30 @@ namespace FSExplorer.BL.Logic
 
             await Task.Factory.StartNew(() =>
             {
-                fsitems = fsFolder.EnumerateFiles()
+                var files = fsFolder.EnumerateFiles()
                                             .Select(fi => new FSItem
                                             {
                                                 Name = fi.Name,
+                                                Location = fi.DirectoryName,
                                                 Size = fi.Length / 1024
                                             })
                                             .ToList();
+
+                var folders = fsFolder.EnumerateDirectories()
+                                            .Select(fi => new FSItem
+                                            {
+                                                Name = fi.Name,
+                                                Location = fi.FullName,
+                                                Size = 0
+                                            })
+                                            .ToList();
+
+                fsitems.AddRange(files);
+                fsitems.AddRange(folders);
             });
 
             return fsitems;
         }
 
-        public async Task<IEnumerable<FSItem>> Add(HttpRequestMessage request)
-        {
-            var provider = new PhotoMultipartFormDataStreamProvider(this.workingFolder);
-
-            await request.Content.ReadAsMultipartAsync(provider);
-
-            var fsitems = new List<FSItem>();
-
-            foreach (var file in provider.FileData)
-            {
-                var fileInfo = new FileInfo(file.LocalFileName);
-
-                fsitems.Add(new FSItem
-                {
-                    Name = fileInfo.Name,
-                    Size = fileInfo.Length / 1024
-                });
-            }
-
-            return fsitems;
-        }
     }
 }
