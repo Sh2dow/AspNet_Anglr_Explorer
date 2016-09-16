@@ -93,7 +93,6 @@
   <ItemGroup>
     <Compile Include="Logic\LocalFSItemManager .cs" />
     <Compile Include="Logic\Interfaces\IFSItemManager.cs" />
-    <Compile Include="Logic\PhotoMultipartFormDataStreamProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

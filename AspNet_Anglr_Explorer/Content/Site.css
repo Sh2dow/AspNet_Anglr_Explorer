@@ -1,17 +1,142 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
 }
 
-/* Set padding to keep content from hitting the edges */
+.site-header {
+    /*color: #F2EFDC;*/
+    padding: 10px;
+}
+
+.user-status a a:visited {
+    color: orangered;
+}
+
+.user-status a:active a:hover {
+    color: red;
+}
+
+.site-status {
+    margin-top: 10px;
+    /*color: white;*/
+}
+
+.site-footer {
+    background-color: #808080;
+    color: #404040;
+}
+
+    .site-footer footer {
+        margin: 10px;
+    }
+
+.site-body {
+    background-color: #f8f7f2;
+    color: #404040;
+    padding: 10px;
+}
+
+.site-username-status {
+    list-style-type: none;
+    display: inline;
+}
+
+.site-login {
+}
+
+.home-consumer {
+    /*background-color: #888888;*/
+}
+
+.home-contractor {
+    /*background-color:#888666;*/
+}
+
+.dashboard-btn {
+    margin-top: 15px;
+}
+
+.thumbnail_max_size {
+    max-height: 100px;
+}
+
+.strike {
+    text-decoration: line-through;
+}
+
+.margin-top-5 {
+    margin-top: 5px;
+}
+
+.margin-left-5 {
+    margin-left: 5px;
+}
+
+.margin-right-5 {
+    margin-right: 5px;
+}
+
+.margin-5 {
+    margin: 5px;
+}
+
+.session-alert {
+    width: 100%;
+    margin-top: 5px;
+}
+
+.session-alert-btn-wrapper {
+    padding: 10px;
+}
+
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    background-color: #F7F7F7;
+    min-width: 535px;
+    min-height: 490px;
+    padding: 35px;
+    position: absolute;
+    margin: 15px;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+a {
+    color: #4EAFF5;
 }
+
+.gTable {
+    border-collapse: collapse;
+    border: 2px solid #b2b2b2;
+    width: 100%;
+    height: 75px;
+    text-align: center;
+    font-size: 16px;
+}
+
+    .gTable tr th {
+        background-color: #b2b2b2;
+        text-align: center;
+        height: 30px;
+        text-align: match-parent;
+    }
+
+        .gTable tr th a {
+            color: white;
+        }
+
+    .gTable tr td {
+        border: 2px solid #c4c3c3;
+        height: 45px;
+    }
+
+    .gTable tr:nth-child(2n+1) {
+        background-color: #F7F7F7;
+    }
+
+ul {
+    list-style: none;
+    padding: 10px;
+    font: 500 16px arial;
+}
+
+    ul li {
+        padding: 0.16em;
+        width: 100px;
+        zoom: 1;
+    }

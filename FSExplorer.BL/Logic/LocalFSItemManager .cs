@@ -56,11 +56,10 @@ namespace FSExplorer.BL.Logic
                                             .ToList();
 
                 var folders = fsFolder.EnumerateDirectories()
-                                            .Select(fi => new FSItem
+                                            .Select(fi => new FolderItem
                                             {
                                                 Name = fi.Name,
                                                 Location = fi.FullName,
-                                                Size = 0
                                             })
                                             .ToList();
 

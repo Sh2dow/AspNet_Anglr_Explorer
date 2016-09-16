@@ -1,15 +1,22 @@
-﻿@*@{
-    Layout = null;
-}*@
-<!DOCTYPE html>
-<html ng-app="app">
-<head>
-    <title>
-        FSExplorer
-    </title>
-    @Styles.Render("~/Content/css")
-</head>
-<body class="container">
-    @Scripts.Render("~/bundles/app")
-</body>
-</html>
+﻿<div ng-app="app" ng-controller="fsitems as vm">
+    <div ng-view>
+        <div class="row">
+            <div>
+                <h3>Current path:  {{fsitems[1].name}}</h3>
+            </div>
+            <div>
+                Table
+            </div>
+            <br />
+            <div>
+                <ul style="list-style: none; margin: -2px; padding: 2px">
+                    <li ng-show="vm.fsitems.length === 0">no files</li>
+                    <li ng-repeat="fsitem in vm.fsitems">
+                        <a href="{{fsitem.name}}">{{fsitem.name}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>

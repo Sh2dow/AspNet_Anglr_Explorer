@@ -168,7 +168,6 @@
     <Content Include="app\app.js" />
     <Content Include="app\appInfo.js" />
     <Content Include="app\fsitem\fsitems.js" />
-    <Content Include="app\fsitem\fsitems.html" />
     <Content Include="app\fsitem\fsManager.js" />
     <Content Include="app\fsitem\fsManagerClient.js" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -204,6 +203,8 @@
     <Content Include="Scripts\angular-scenario.js" />
     <Content Include="Scripts\angular-touch.js" />
     <Content Include="Scripts\angular-touch.min.js" />
+    <Content Include="Scripts\angular-ui-router.js" />
+    <Content Include="Scripts\angular-ui-router.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
