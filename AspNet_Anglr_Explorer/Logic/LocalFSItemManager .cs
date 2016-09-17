@@ -49,6 +49,7 @@ namespace AspNet_Anglr_Explorer.Logic
                                         .Select(fi => new FSItem
                                         {
                                             Name = fi.Name,
+                                            isDirectory = false,
                                             Size = fi.Length
                                         })
                                         .ToList();
@@ -57,11 +58,18 @@ namespace AspNet_Anglr_Explorer.Logic
                                             .Select(di => new FSItem
                                             {
                                                 Name = di.Name,
+                                                isDirectory = true,
                                                 Size = 0
                                             })
                                             .ToList();
-                fsitems.AddRange(files);
+                fsitems.Add(new FSItem
+                {
+                    Name = "..",
+                    isDirectory = false,
+                    relPath = fsFolder.FullName
+                });
                 fsitems.AddRange(folders);
+                fsitems.AddRange(files);
             });
 
             return fsitems;
