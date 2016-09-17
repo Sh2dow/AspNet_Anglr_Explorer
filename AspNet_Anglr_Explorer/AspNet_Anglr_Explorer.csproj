@@ -122,7 +122,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -162,14 +161,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Logic\IFSItemManager.cs" />
+    <Compile Include="Logic\LocalFSItemManager .cs" />
+    <Compile Include="Models\FSItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
     <Content Include="app\appInfo.js" />
-    <Content Include="app\fsitem\fsitems.js" />
-    <Content Include="app\fsitem\fsManager.js" />
-    <Content Include="app\fsitem\fsManagerClient.js" />
+    <Content Include="app\fsitems.js" />
+    <Content Include="app\fsManager.js" />
+    <Content Include="app\fsManagerClient.js" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -241,7 +243,6 @@
     <Content Include="Scripts\angular-cookies.min.js.map" />
     <Content Include="Scripts\angular-aria.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
-    <Content Include="app\fsitem\fsitem.module.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-er.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-et.js" />
@@ -1020,16 +1021,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\version.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\FSExplorer.BL\FSExplorer.BL.csproj">
-      <Project>{f3219282-d874-47d6-ae62-c557bc10fa8c}</Project>
-      <Name>FSExplorer.BL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FSExplorer.Models\FSExplorer.Models.csproj">
-      <Project>{0012869a-e853-4fc3-8ff5-855512ba1a56}</Project>
-      <Name>FSExplorer.Models</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

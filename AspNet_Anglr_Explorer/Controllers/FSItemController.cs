@@ -1,7 +1,7 @@
 ﻿using System.Web.Http;
-using FSExplorer.BL.Logic;
 using System.Threading.Tasks;
 using System.Web;
+using AspNet_Anglr_Explorer.Logic;
 
 namespace AspNet_Anglr_Explorer.Controllers
 {
@@ -21,9 +21,9 @@ namespace AspNet_Anglr_Explorer.Controllers
         }
 
         // GET: api/fsitem
-        public async Task<IHttpActionResult> Get()
+        public async Task<IHttpActionResult> Get(string path = null)
         {
-            var results = await fsManager.Get();
+            var results = (path != null) ? await fsManager.Get(path) : await fsManager.Get();
             
             return Ok(new { fsitems = results });
         }
