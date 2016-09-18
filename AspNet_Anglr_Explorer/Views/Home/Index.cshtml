@@ -1,13 +1,5 @@
 ﻿@Scripts.Render("~/bundles/app")
 <div ng-app="app">
-    <div>
-        <input ng-model="path">
-        <button ng-click="">OK</button>
-        <br />
-        <h1>path: {{path}}</h1>
-    </div>
-    <br />
-    <br />
     <div ng-controller="fsitems as vm">
         <script type="text/javascript">
             function pageLoad() {
@@ -22,9 +14,9 @@
                     tableStyle: "gTable",
                     footerStyle: "hidden",
                             columns: g_style.Columns(
-                                    g_style.Column("Size", "Less 10Mb", @item => "3421"),
-                                    g_style.Column("Size", "10Mb-50Mb", @item => "942"),
-                                    g_style.Column("Size", "More 100Mb", @item => "21")));
+                                    g_style.Column("Size", "Less 10Mb", @item => "{{vm.fsitems[0].nestedItems[0]}}"),
+                                    g_style.Column("Size", "10Mb-50Mb", @item => "{{vm.fsitems[0].nestedItems[1]}}"),
+                                    g_style.Column("Size", "More 100Mb", @item => "{{vm.fsitems[0].nestedItems[2]}}")));
             }
         </div>
         <div id="Current path" style="padding: 17px 0px 5px 0px ">
@@ -34,7 +26,7 @@
             <ul style="list-style: none; margin: -2px; padding: 2px">
                 <li ng-show="vm.fsitems.length === 0">no files</li>
                 <li ng-repeat="fsitem in vm.fsitems">
-                    <a href="fsManager.get({{fsitem.relPath}})" ng-style="fsitem.isDirectory === true ? { 'text-decoration':'none'} : { 'text-decoration':'underline' }">{{fsitem.name}}</a>
+                    <a href="#" ng-href="{{vm.fsitems[0].relPath}}{{fsitem.relPath}}" ng-style="fsitem.isDirectory === true ? { 'text-decoration':'none'} : { 'text-decoration':'underline' }">{{fsitem.name}}</a>
                 </li>
             </ul>
         </div>

@@ -73,12 +73,24 @@ namespace AspNet_Anglr_Explorer.Logic
                     Name = "..",
                     relPath = Path.Combine(parRelPath),
                     isDirectory = false,
+                    NestedItems = getNestedItems(fsFolder)
                 });
                 fsitems.AddRange(folders);
                 fsitems.AddRange(files);
             });
 
             return fsitems;
+        }
+        public List<Int64> getNestedItems(DirectoryInfo di)
+        {
+            var ni = new List<Int64> { 0, 0, 0 };
+
+            List<FileInfo> fileDetails = new List<FileInfo>();
+            var files = di.GetFiles("*.*", SearchOption.AllDirectories);
+            ni[0] += (files.Where(x => x.Length <= (1024 * 1024 * 10)).ToArray().LongLength);
+            ni[1] += (files.Where(x => x.Length >= (1024 * 1024 * 10)).Where(x => x.Length <= (1024 * 1024 * 50)).ToArray().LongLength);
+            ni[2] += (files.Where(x => x.Length >= (1024 * 1024 * 100)).ToArray().LongLength);
+            return ni;
         }
 
         public async Task<IEnumerable<FSItem>> Get(string path)

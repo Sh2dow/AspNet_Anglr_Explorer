@@ -9,6 +9,6 @@ namespace AspNet_Anglr_Explorer.Models
         public string relPath { get; set; }
         public bool isDirectory { get; set; }
         public Int64? Size { get; set; }
-        public Int64[] NestedItems { get; set; }
+        public List<Int64> NestedItems { get; set; }
     }
 }

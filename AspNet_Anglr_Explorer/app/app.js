@@ -62,7 +62,7 @@
     function fsManagerClient($resource) {
         return $resource("api/fsitem/:path", { path: "" },
                 {
-                    query: { method: 'GET' },
+                    //query: { method: 'GET' },
                     get: { method: 'GET', url: 'api/fsitem/?path', params: { name: "" } }
                 });
     }
