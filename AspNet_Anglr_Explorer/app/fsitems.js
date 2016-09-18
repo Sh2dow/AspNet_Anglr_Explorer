@@ -16,7 +16,8 @@
         activate();
 
         function activate() {
-            fsManager.load();
+            fsManager.get();
+            //fsManager.load();
         }
     }
 })();

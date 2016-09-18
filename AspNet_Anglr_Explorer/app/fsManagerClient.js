@@ -10,7 +10,8 @@
     function fsManagerClient($resource) {
         return $resource("api/fsitem/:fileName", { path: "@fileName" },
                 {
-                    query: { method: 'GET', params: {}, isArray: true }
+                    'get': { method: 'GET' },
+                    'query': { method: 'GET', url: 'api/fsitem/:filename', params: { name: '@fileName' } }
                     //'query': { method: 'GET', url: 'api/fsitem/:fileName', params: { name: '@fileName' } }
                 });
     }
