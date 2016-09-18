@@ -21,9 +21,17 @@ namespace AspNet_Anglr_Explorer.Controllers
         }
 
         // GET: api/fsitem
-        public async Task<IHttpActionResult> Get(string path = null)
+        //public async Task<IHttpActionResult> Get()
+        //{
+        //    var results = await fsManager.Get();
+
+        //    return Ok(new { fsitems = results });
+        //}
+
+        public async Task<IHttpActionResult> Get(string path)
         {
-            var results = (path != null) ? await fsManager.Get(path) : await fsManager.Get();
+            fsManager = new LocalFSItemManager(path);
+            var results = await fsManager.Get(path);
             
             return Ok(new { fsitems = results });
         }

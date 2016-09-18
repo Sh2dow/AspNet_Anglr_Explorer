@@ -92,7 +92,7 @@
     width: 535px;
     min-height: 490px;
     padding: 35px;
-    position: fixed;
+    position: absolute;
     margin: 15px;
 }
 

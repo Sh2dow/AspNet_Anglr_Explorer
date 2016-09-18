@@ -14,6 +14,7 @@ namespace AspNet_Anglr_Explorer.Logic
         private string currentDir { get; set; }
         public LocalFSItemManager()
         {
+
         }
 
         public LocalFSItemManager(string currentDir)
