@@ -20,7 +20,7 @@ namespace AspNet_Anglr_Explorer.Controllers
             this.fsManager = fsManager;
         }
 
-        public async Task<IHttpActionResult> Get(string path = null)
+        public async Task<IHttpActionResult> Get(string path)
         {
             path = (path != null) ? path : HttpRuntime.AppDomainAppPath;
             fsManager = new LocalFSItemManager(path);

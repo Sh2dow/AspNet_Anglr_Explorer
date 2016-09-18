@@ -43,6 +43,9 @@ namespace AspNet_Anglr_Explorer.Logic
         {
             List<FSItem> fsitems = null;
             DirectoryInfo fsFolder = new DirectoryInfo(this.currentDir);
+            var relPath = ExtensionMethods.RelativeFromAbsolutePath(fsFolder.FullName);
+            var parRelPath = ExtensionMethods.RelativeFromAbsolutePath(fsFolder.Parent.FullName);
+
             await Task.Factory.StartNew(() =>
             {
                 fsitems = new List<FSItem>();
@@ -50,6 +53,7 @@ namespace AspNet_Anglr_Explorer.Logic
                                         .Select(fi => new FSItem
                                         {
                                             Name = fi.Name,
+                                            relPath = relPath + fi.Name,
                                             isDirectory = false,
                                             Size = fi.Length
                                         })
@@ -59,6 +63,7 @@ namespace AspNet_Anglr_Explorer.Logic
                                             .Select(di => new FSItem
                                             {
                                                 Name = di.Name,
+                                                relPath = relPath + di.Name,
                                                 isDirectory = true,
                                                 Size = 0
                                             })
@@ -66,8 +71,8 @@ namespace AspNet_Anglr_Explorer.Logic
                 fsitems.Add(new FSItem
                 {
                     Name = "..",
+                    relPath = Path.Combine(parRelPath),
                     isDirectory = false,
-                    relPath = fsFolder.FullName
                 });
                 fsitems.AddRange(folders);
                 fsitems.AddRange(files);

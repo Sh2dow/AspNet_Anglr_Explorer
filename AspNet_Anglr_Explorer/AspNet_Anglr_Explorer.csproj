@@ -167,11 +167,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\app - Copy.js" />
     <Content Include="app\app.js" />
-    <Content Include="app\appInfo.js" />
-    <Content Include="app\fsitems.js" />
-    <Content Include="app\fsManager.js" />
-    <Content Include="app\fsManagerClient.js" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />

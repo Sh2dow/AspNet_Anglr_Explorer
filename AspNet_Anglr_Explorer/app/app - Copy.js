@@ -1,15 +1,15 @@
 ﻿(function (angular) {
 
     angular
-        .module('app', ['ngResource'])
-        .controller('fsitems', fsitems)
+        .module('app', ['ngResource', $scope])
+        .controller('fsitems', $scope, fsitems)
         .value('path', {
             load: function (path) {
                 this.path = path;
-            }
+        }
         });
 
-    fsitems.$inject = ['fsManager'];
+        fsitems.$inject = ['fsManager'];
 
     function fsitems(fsManager) {
         /* jshint validthis:true */
@@ -17,7 +17,7 @@
         vm.title = 'fs manager';
         vm.fsitems = fsManager.fsitems;
 
-        fsManager.get();
+        $scope.list() = fsManager.get();
     }
 
     angular
