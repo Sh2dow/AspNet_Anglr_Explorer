@@ -13,11 +13,5 @@ namespace AspNet_Anglr_Explorer.Controllers
         {
             return View();
         }
-
-        public ActionResult IndexTest()
-        {
-            return View("IndexTest");
-        }
-
     }
 }
