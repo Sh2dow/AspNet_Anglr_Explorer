@@ -14,14 +14,14 @@
             }
         </div>
         <div id="Current path" style="padding: 17px 0px 5px 0px ">
-            <h3><span style="font: 600 16px arial">Current path:&nbsp;&nbsp;</span><span style="color: darkgrey; font: 500 16px arial">{{vm.fsitems[0].relPath}}</span></h3>
+            <h3><span style="font: 600 16px arial">Current path:&nbsp;&nbsp;</span><span style="color: darkgrey; font: 500 16px arial">{{vm.fsitems[0].curPath}}</span></h3>
         </div>
-        @*<a href="" ng-click="vm.get('')" ng-style="fsitem.isDirectory === true ? { 'text-decoration':'none'} : { 'text-decoration':'underline' }">Manully get</a>*@
         <div id="filelist" style="border: 2px solid #F3F3F3" ng-view>
             <ul style="list-style: none; margin: -2px; padding: 2px">
                 <li ng-show="vm.fsitems.length === 0">no files</li>
-                <li ng-repeat="fsitem in vm.fsitems">
-                    <a href="" ng-click="vm.get(fsitem.relPath)" ng-style="fsitem.isDirectory === true ? { 'text-decoration':'none'} : { 'text-decoration':'underline' }">{{fsitem.name}}</a>
+                <li><a href="" ng-click="vm.get(vm.fsitems[0].name)" style='text-decoration : underline'>..</a></li>
+                <li ng-repeat="fsitem in vm.fsitems.slice(1)">
+                    <a href="" ng-click="vm.get(vm.fsitems[0].relPath+fsitem.name)" ng-style="fsitem.isDirectory === true ? { 'text-decoration':'none'} : { 'text-decoration':'underline' }">{{fsitem.nameAs}}</a>
                 </li>
             </ul>
         </div>

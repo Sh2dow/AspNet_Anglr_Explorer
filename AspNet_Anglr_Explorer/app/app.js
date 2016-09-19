@@ -1,13 +1,12 @@
 ﻿(function (angular) {
 
-    angular
-        .module('app', ['ngResource'])
-        .controller('fsitems', fsitems)
-        .value('path', {
-            load: function (path) {
-                this.path = path;
-            }
-        });
+    var app = angular.module('app', ['ngResource'])
+    app.controller('fsitems', fsitems)
+    app.value('path', {
+        load: function (path) {
+            this.path = path;
+        }
+    });
 
     fsitems.$inject = ['fsManager'];
 
@@ -45,7 +44,7 @@
         function get(path) {
             service.fsitems.length = 0;
 
-            return fsManagerClient.get({path: path})
+            return fsManagerClient.get({ path: path })
                                 .$promise
                                 .then(function (result) {
                                     result.fsitems
@@ -61,17 +60,20 @@
         }
     }
 
-        angular
-            .module('app')
-            .factory('fsManagerClient', fsManagerClient);
+    angular
+        .module('app')
+        .factory('fsManagerClient', fsManagerClient);
 
-        fsManagerClient.$inject = ['$resource'];
+    fsManagerClient.$inject = ['$resource'];
 
-        function fsManagerClient($resource) {
-            return $resource("api/fsitem/:path", { id: "@path" },
-                    {
-                        get: { method: 'GET', url: '/api/fsitem/?path=:path', params: { path: '@path' } }
-                    });
-        }
+    function fsManagerClient($resource) {
+        return $resource("api/fsitem/:path", { id: "@path" },
+                {
+                    get: { method: 'GET', url: '/api/fsitem/?path=:path', params: { path: '@path' } }
+                });
+    }
 
-    })(window.angular);
+    app.run(
+        function ($rootScope) {
+        });
+})(window.angular);

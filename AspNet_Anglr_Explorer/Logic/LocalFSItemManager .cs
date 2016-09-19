@@ -46,46 +46,49 @@ namespace AspNet_Anglr_Explorer.Logic
 
             var relPath = fsFolder.FullName.Replace(@"\", "/"); ;
 
-            DriveInfo drives = new DriveInfo(this.currentDir);
+            //DriveInfo drives = new DriveInfo(this.currentDir);
 
-            // checks if the logical drive is ready
-            if (!drives.IsReady)
-            {
-                this.currentDir = String.Empty;
-            }
+            //// checks if the logical drive is ready
+            //if (!drives.IsReady)
+            //{
+            //    this.currentDir = String.Empty;
+            //}
             string parRelPath = "";
             if (Directory.GetParent(currentDir).Exists)
+            {
                 parRelPath = ExtensionMethods.RelativeFromAbsolutePath(fsFolder.Parent.FullName);
+            }
             else
-                parRelPath = ExtensionMethods.RelativeFromAbsolutePath(fsFolder.FullName);
+            {
+                parRelPath = ExtensionMethods.RelativeFromAbsolutePath(fsFolder.Root.FullName);
+            }
+            parRelPath = Path.Combine(parRelPath);
 
             await Task.Factory.StartNew(() =>
             {
                 fsitems = new List<FSItem>();
                 var files = fsFolder.EnumerateFiles()
-                                        .Select(fi => new FSItem
+                                        .Select(fi => new FItem
                                         {
-                                            Name = fi.Name,
-                                            relPath = relPath + fi.Name,
-                                            isDirectory = false,
+                                            name = fi.Name,
+                                            nameAs = fi.Name,
                                             Size = fi.Length
                                         })
                                         .ToList();
 
                 var folders = fsFolder.EnumerateDirectories()
-                                            .Select(di => new FSItem
+                                            .Select(di => new DItem
                                             {
-                                                Name = di.Name,
-                                                relPath = relPath + di.Name,
-                                                isDirectory = true,
-                                                Size = 0
+                                                name = di.Name,
+                                                nameAs = di.Name,
                                             })
                                             .ToList();
-                fsitems.Add(new FSItem
+                fsitems.Add(new RItem
                 {
-                    Name = "..",
-                    relPath = Path.Combine(parRelPath),
-                    isDirectory = false,
+                    name = parRelPath,
+                    nameAs = "..",
+                    curPath = currentDir,
+                    relPath = Path.Combine(currentDir),
                     NestedItems = getNestedItems(fsFolder)
                 });
                 fsitems.AddRange(folders);
