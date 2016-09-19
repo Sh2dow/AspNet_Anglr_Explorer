@@ -1,0 +1,28 @@
+﻿<div data-ng-app="app">
+    <div class="fsitems" ng-controller="fsitems as vm" ng-view="fsitems">
+        <div id="tblGrid">
+            @{
+                var g_style = new WebGrid(source: new string[] { "1", "2", "3" },
+                      rowsPerPage: 1);
+                @g_style.GetHtml(
+                    tableStyle: "gTable",
+                    footerStyle: "hidden",
+                            columns: g_style.Columns(
+                                    g_style.Column("Size", "Less 10Mb", @item => "{{vm.fsitems[0].nestedItems[0]}}"),
+                                    g_style.Column("Size", "10Mb-50Mb", @item => "{{vm.fsitems[0].nestedItems[1]}}"),
+                                    g_style.Column("Size", "More 100Mb", @item => "{{vm.fsitems[0].nestedItems[2]}}")));
+            }
+        </div>
+        <div id="Current path" style="padding: 17px 0px 5px 0px ">
+            <h3><span style="font: 600 16px arial">Current path:&nbsp;&nbsp;</span><span style="color: darkgrey; font: 500 16px arial">{{vm.fsitems[0].relPath}}</span></h3>
+        </div>
+        <div id="filelist" style="border: 2px solid #F3F3F3; ">
+            <ul style="list-style: none; margin: -2px; padding: 2px">
+                <li ng-show="vm.fsitems.length === 0">no files</li>
+                <li ng-repeat="fsitem in vm.fsitems">
+                    <a href="" ng-click="test(game)" ng-style="fsitem.isDirectory === true ? { 'text-decoration':'none'} : { 'text-decoration':'underline' }">{{fsitem.name}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

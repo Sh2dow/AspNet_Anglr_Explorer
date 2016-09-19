@@ -43,8 +43,21 @@ namespace AspNet_Anglr_Explorer.Logic
         {
             List<FSItem> fsitems = null;
             DirectoryInfo fsFolder = new DirectoryInfo(this.currentDir);
-            var relPath = ExtensionMethods.RelativeFromAbsolutePath(fsFolder.FullName);
-            var parRelPath = ExtensionMethods.RelativeFromAbsolutePath(fsFolder.Parent.FullName);
+
+            var relPath = fsFolder.FullName.Replace(@"\", "/"); ;
+
+            DriveInfo drives = new DriveInfo(this.currentDir);
+
+            // checks if the logical drive is ready
+            if (!drives.IsReady)
+            {
+                this.currentDir = String.Empty;
+            }
+            string parRelPath = "";
+            if (Directory.GetParent(currentDir).Exists)
+                parRelPath = ExtensionMethods.RelativeFromAbsolutePath(fsFolder.Parent.FullName);
+            else
+                parRelPath = ExtensionMethods.RelativeFromAbsolutePath(fsFolder.FullName);
 
             await Task.Factory.StartNew(() =>
             {
@@ -110,6 +123,7 @@ namespace AspNet_Anglr_Explorer.Logic
                 var applicationPath = request.PhysicalApplicationPath;
                 var virtualDir = request.ApplicationPath;
                 virtualDir = virtualDir == "/" ? virtualDir : (virtualDir + "/");
+                //return path.Replace(@"\", "/");
                 return path.Replace(applicationPath, virtualDir).Replace(@"\", "/");
             }
 

@@ -40,6 +40,6 @@ D:\Documents\Visual Studio 2015\Projects\aspnet_anglr_explorer\AspNet_Anglr_Expl
 D:\Documents\Visual Studio 2015\Projects\aspnet_anglr_explorer\AspNet_Anglr_Explorer\bin\System.Web.WebPages.xml
 D:\Documents\Visual Studio 2015\Projects\aspnet_anglr_explorer\AspNet_Anglr_Explorer\bin\System.Web.WebPages.Deployment.xml
 D:\Documents\Visual Studio 2015\Projects\aspnet_anglr_explorer\AspNet_Anglr_Explorer\bin\System.Web.WebPages.Razor.xml
+D:\Documents\Visual Studio 2015\Projects\aspnet_anglr_explorer\AspNet_Anglr_Explorer\obj\Debug\AspNet_Anglr_Explorer.csprojResolveAssemblyReference.cache
 D:\Documents\Visual Studio 2015\Projects\aspnet_anglr_explorer\AspNet_Anglr_Explorer\obj\Debug\AspNet_Anglr_Explorer.dll
 D:\Documents\Visual Studio 2015\Projects\aspnet_anglr_explorer\AspNet_Anglr_Explorer\obj\Debug\AspNet_Anglr_Explorer.pdb
-D:\Documents\Visual Studio 2015\Projects\aspnet_anglr_explorer\AspNet_Anglr_Explorer\obj\Debug\AspNet_Anglr_Explorer.csprojResolveAssemblyReference.cache

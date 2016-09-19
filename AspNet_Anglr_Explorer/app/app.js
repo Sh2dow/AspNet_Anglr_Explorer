@@ -3,11 +3,11 @@
     angular
         .module('app', ['ngResource'])
         .controller('fsitems', fsitems)
-        .value('path', {
-            load: function (path) {
-                this.path = path;
-            }
-        });
+        //.value('path', {
+        //    load: function (path) {
+        //        this.path = path;
+        //    }
+        //});
 
     fsitems.$inject = ['fsManager'];
 
@@ -16,8 +16,16 @@
         var vm = this;
         vm.title = 'fs manager';
         vm.fsitems = fsManager.fsitems;
+        vm.get = fsManager.get;
 
-        fsManager.get();
+        get();
+
+        function get(fsitem) {
+            var f = fsManager.get(fsitem)
+                .then(function () {
+                    console.log(fsitem.relPath);
+                });
+        }
     }
 
     angular
@@ -29,7 +37,7 @@
     function fsManager($q, fsManagerClient) {
         var service = {
             fsitems: [],
-            get: get,
+            get: get
         };
 
         return service;
@@ -37,7 +45,7 @@
         function get(fsitem) {
             service.fsitems.length = 0;
 
-            return fsManagerClient.get()
+            return fsManagerClient.get(fsitem)
                                 .$promise
                                 .then(function (result) {
                                     result.fsitems
@@ -50,21 +58,23 @@
                                 function (result) {
                                     return $q.reject(result);
                                 })
+                .then(function () {
+                    console.log(fsitem);
+                });
         }
     }
 
-    angular
-        .module('app')
-        .factory('fsManagerClient', fsManagerClient);
+        angular
+            .module('app')
+            .factory('fsManagerClient', fsManagerClient);
 
-    fsManagerClient.$inject = ['$resource'];
+        fsManagerClient.$inject = ['$resource'];
 
-    function fsManagerClient($resource) {
-        return $resource("api/fsitem/:path", { path: "" },
-                {
-                    //query: { method: 'GET' },
-                    get: { method: 'GET', url: 'api/fsitem/?path', params: { name: "" } }
-                });
-    }
+        function fsManagerClient($resource) {
+            return $resource("api/fsitem/:path", { path: '@path' },
+                    {
+                        get: { method: 'GET', url: 'api/fsitem/?path', params: { path: '@path' } }
+                    });
+        }
 
-})(window.angular);
+    })(window.angular);
