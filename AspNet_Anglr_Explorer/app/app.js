@@ -21,9 +21,6 @@
 
         function get(path) {
             var f = fsManager.get(path)
-                .then(function () {
-                    console.log(path);
-                });
         }
     }
 
@@ -42,21 +39,18 @@
         return service;
 
         function get(path) {
+            console.log(path);
             service.fsitems.length = 0;
-
             return fsManagerClient.get({ path: path })
-                                .$promise
-                                .then(function (result) {
-                                    result.fsitems
-                                            .forEach(function (path) {
-                                                service.fsitems.push(path);
-                                            });
+            .$promise
+            .then(function (result) {
+                result.fsitems
+                        .forEach(function (path) {
+                            service.fsitems.push(path);
+                        });
 
-                                    return result.$promise;
-                                })
-                .then(function () {
-                    console.log(path);
-                });
+                return result.$promise;
+            });
         }
     }
 
@@ -67,7 +61,7 @@
     fsManagerClient.$inject = ['$resource'];
 
     function fsManagerClient($resource) {
-        return $resource("api/fsitem/:path", { id: "@path" },
+        return $resource("api/fsitem/:path", { path: "@path" },
                 {
                     get: { method: 'GET', url: '/api/fsitem/?path=:path', params: { path: '@path' } }
                 });
