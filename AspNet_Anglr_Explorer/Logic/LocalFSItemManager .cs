@@ -47,8 +47,8 @@ namespace AspNet_Anglr_Explorer.Logic
                     fsitems.Add(new PItem
                         {
                             path = "secret",
-                            name = localPath
-                            //NestedItems = getNestedItems(fsFolder)
+                            name = localPath,
+                            NestedItems = getNestedItems(fsFolder)
                         });
                     fsitems.AddRange(folders);
                     fsitems.AddRange(files);
@@ -68,8 +68,8 @@ namespace AspNet_Anglr_Explorer.Logic
                     fsitems.Add(new PItem
                     {
                         path = "secret",
-                        name = "My Computer"
-                        //NestedItems = getNestedItems(fsFolder)
+                        name = "My Computer",
+                        NestedItems = getNestedItems(fsFolder)
                     });
                     fsitems.AddRange(drives);
                 });
