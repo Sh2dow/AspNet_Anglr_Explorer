@@ -97,8 +97,8 @@ namespace AspNet_Anglr_Explorer.Logic
                     fsitems.Add(new PItem
                     {
                         path = HttpUtility.UrlPathEncode(fsFolder.Parent.FullName),
-                        name = localPath
-                        //NestedItems = getNestedItems(fsFolder)
+                        name = localPath,
+                        NestedItems = getNestedItems(fsFolder)
                     });
                     fsitems.AddRange(folders);
                     fsitems.AddRange(files);
