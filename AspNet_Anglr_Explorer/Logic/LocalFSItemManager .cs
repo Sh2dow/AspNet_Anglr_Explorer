@@ -22,39 +22,56 @@ namespace AspNet_Anglr_Explorer.Logic
             List<FSItem> fsitems = null;
             var fsFolder = new DirectoryInfo(this.localPath);
             path = HttpUtility.UrlPathEncode(fsFolder.FullName);
-            //var relPath = fsFolder.FullName.Replace(@"\", "/"); ;
             fsitems = new List<FSItem>();
-            if (Directory.GetDirectoryRoot(localPath) == localPath)
-            //parRelPath.EndsWith(@":\")
-            {
-                await Task.Factory.StartNew(() =>
-                {
-                    var files = fsFolder.EnumerateFiles()
-                                            .Select(fi => new FItem
-                                            {
-                                                name = fi.Name,
-                                                path = path + @"\" + fi.Name
-                                            })
-                                            .ToList();
 
-                    var folders = fsFolder.EnumerateDirectories()
-                                                .Select(di => new DItem
-                                                {
-                                                    name = di.Name,
-                                                    path = path + @"\" + di.Name
-                                                })
-                                                .ToList();
-                    fsitems.Add(new PItem
+            if (localPath != "secret" && new DriveInfo(Directory.GetDirectoryRoot(localPath)).IsReady)
+            {
+                string fipath;
+                if (Directory.GetDirectoryRoot(localPath) == localPath)
+                    fipath = "secret";
+                else
+                    fipath = HttpUtility.UrlPathEncode(fsFolder.Parent.FullName);
+
+                await Task.Factory.StartNew(() =>
+                    {
+                        try
                         {
-                            path = "secret",
-                            name = localPath,
-                            NestedItems = getNestedItems(fsFolder)
-                        });
-                    fsitems.AddRange(folders);
-                    fsitems.AddRange(files);
-                });
+                            var files = fsFolder.EnumerateFiles()
+                                                    .Select(fi => new FItem
+                                                    {
+                                                        name = fi.Name,
+                                                        path = path + @"\" + fi.Name
+                                                    })
+                                                    .ToList();
+
+                            var folders = fsFolder.EnumerateDirectories()
+                                                        .Select(di => new DItem
+                                                        {
+                                                            name = di.Name,
+                                                            path = path + @"\" + di.Name
+                                                        })
+                                                        .ToList();
+                            fsitems.Add(new PItem
+                            {
+                                path = fipath,
+                                name = localPath,
+                                NestedItems = getNestedItems(fsFolder)
+                            });
+                            fsitems.AddRange(folders);
+                            fsitems.AddRange(files);
+                        }
+                        catch
+                        {
+                            fsitems.Add(new PItem
+                            {
+                                path = fipath,
+                                name = localPath,
+                            });
+                        }
+                    });
+
             }
-            else if (localPath == "secret")
+            else
             {
                 await Task.Factory.StartNew(() =>
                 {
@@ -69,49 +86,29 @@ namespace AspNet_Anglr_Explorer.Logic
                     {
                         path = "secret",
                         name = "My Computer",
-                        NestedItems = getNestedItems(fsFolder)
                     });
                     fsitems.AddRange(drives);
                 });
                 return fsitems;
             }
-            else
-            {
-                await Task.Factory.StartNew(() =>
-                {
-                    var files = fsFolder.EnumerateFiles()
-                                            .Select(fi => new FItem
-                                            {
-                                                name = fi.Name,
-                                                path = path + @"\" + fi.Name
-                                            })
-                                            .ToList();
-
-                    var folders = fsFolder.EnumerateDirectories()
-                                                .Select(di => new DItem
-                                                {
-                                                    name = di.Name,
-                                                    path = path + @"\" + di.Name
-                                                })
-                                                .ToList();
-                    fsitems.Add(new PItem
-                    {
-                        path = HttpUtility.UrlPathEncode(fsFolder.Parent.FullName),
-                        name = localPath,
-                        NestedItems = getNestedItems(fsFolder)
-                    });
-                    fsitems.AddRange(folders);
-                    fsitems.AddRange(files);
-                });
-            }
             return fsitems;
         }
+
         public List<Int64> getNestedItems(DirectoryInfo di)
         {
             var ni = new List<Int64> { 0, 0, 0 };
 
-            List<FileInfo> fileDetails = new List<FileInfo>();
-            var files = di.GetFiles("*.*", SearchOption.AllDirectories);
+            var files = new List<FileInfo>();
+            var dirs = di.GetDirectories();
+            foreach (var dir in dirs)
+            {
+                try
+                {
+                    files.AddRange(dir.GetFiles("*.*", SearchOption.AllDirectories));
+                }
+                catch { }
+            }
+
             ni[0] += (files.Where(x => x.Length <= (1024 * 1024 * 10)).ToArray().LongLength);
             ni[1] += (files.Where(x => x.Length >= (1024 * 1024 * 10)).Where(x => x.Length <= (1024 * 1024 * 50)).ToArray().LongLength);
             ni[2] += (files.Where(x => x.Length >= (1024 * 1024 * 100)).ToArray().LongLength);
